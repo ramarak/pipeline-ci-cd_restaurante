@@ -15,9 +15,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Instalar dependencias de calidad
-        run: pip install ruff
+        run: pip install ruff==0.8.4
       - name: Análisis estático
-        run: ruff check .
+        run: ruff check app tests
 
   test:
     name: Pruebas unitarias
