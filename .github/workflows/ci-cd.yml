@@ -1,0 +1,73 @@
+name: CI/CD Restaurante Sabor Andino
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  lint:
+    name: Construcción y calidad (Ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias de calidad
+        run: pip install ruff
+      - name: Análisis estático
+        run: ruff check .
+
+  test:
+    name: Pruebas unitarias
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias
+        run: pip install -r requirements-dev.txt
+      - name: Ejecutar pytest
+        run: pytest -v
+
+  security:
+    name: Validación de seguridad
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar herramientas
+        run: pip install bandit pip-audit
+      - name: Análisis estático de seguridad (Bandit)
+        run: bandit -r app -q -c .bandit
+      - name: Auditoría de dependencias
+        run: pip-audit -r requirements.txt
+
+  build:
+    name: Empaquetado Docker
+    needs: security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir imagen
+        run: docker build -t restaurante-sabor-andino:${{ github.sha }} .
+
+  deploy-staging:
+    name: Despliegue a staging
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Simular despliegue con Compose
+        run: |
+          echo "Entorno: staging"
+          echo "Imagen: restaurante-sabor-andino:${{ github.sha }}"
+          docker compose config
+          echo "Despliegue a staging simulado (compose validado)."

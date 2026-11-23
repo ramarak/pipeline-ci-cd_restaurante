@@ -1,0 +1,10 @@
+Docker no está instalado o no está en el PATH de esta máquina.
+
+Comandos esperados para la etapa de empaquetado y staging:
+
+  docker build -t restaurante-sabor-andino:staging .
+  docker compose up --build -d
+  Invoke-WebRequest http://127.0.0.1:8000/health
+
+Cuando Docker Desktop esté disponible, pegue la captura en [CAPTURA 8].
+El archivo docker-compose.yml y el Dockerfile del repositorio definen el entorno staging.

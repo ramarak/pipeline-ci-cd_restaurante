@@ -1,0 +1,16 @@
+Correspondencia de capturas con el informe:
+
+01  capturas/captura-01-repositorio.png     Repositorio / git status
+1b  capturas/captura-1b-yaml.png            Workflow GitHub Actions
+02  capturas/captura-02-api-docs.png        API Swagger en /docs
+02b capturas/captura-02b-mesas.png          GET /reservas/mesas
+03  capturas/captura-03-ruff.png            Lint (Ruff)
+04  capturas/captura-04-pytest-ok.png       Pruebas en verde
+05  capturas/captura-05-pytest-fallo.png    Fallo simulado
+06  capturas/captura-06-pytest-correccion.png  Pruebas corregidas
+07  capturas/captura-07-seguridad.png       Bandit y pip-audit
+08  capturas/captura-08-staging.png         Health del servicio
+08b capturas/captura-08-staging-config.png  Dockerfile y Compose
+D   capturas/captura-D-diagrama.png         Diagrama del pipeline
+09  capturas/captura-09-github-actions.png  GitHub Actions (tras el push)
+10  capturas/captura-10-github-fallo.png    Actions en rojo (si aplica)
