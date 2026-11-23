@@ -37,6 +37,11 @@ docker compose up --build -d
 docker compose up --build -d
 ```
 
-El informe académico está en `Informe_Pipeline_CI_CD_Restaurante.docx`.
+El informe académico se genera en local (no se versiona en Git):
+
+```powershell
+python scripts/generar_informe.py
+```
+
 Las evidencias visuales están en la carpeta `capturas/`.
 Repositorio: https://github.com/ramarak/pipeline-ci-cd_restaurante
