@@ -37,7 +37,7 @@ docker compose up --build -d
 docker compose up --build -d
 ```
 
-El informe académico se genera en local (no se versiona en Git):
+El informe se genera en local (no se versiona en Git):
 
 ```powershell
 python scripts/generar_informe.py
